@@ -195,6 +195,7 @@ $cur_yr = date('Y');
 								<tr style="text-transform: uppercase;" class="h5 text-center">
 									<td>No.</td>
 									<td>Announcement</td>
+									<th>Cover Photo</th>
 									<td>Date Posted</td>
 									<td>Action</td>
 								</tr>
@@ -210,6 +211,7 @@ $cur_yr = date('Y');
 										<input type="hidden" name="tbl_name" value="announcement">
 										<td><?php echo $i++; ?></td>
 										<td><?php echo nl2br($res['description']) ?></td>
+										<td><img src="../announcement/<?php echo $res['cover_photo'] ?>" width="300" height="250"></td>
 										<td><?php echo $res['created_at'] ?></td>
 										<td>
 											<button class="btn btn-info mb-2 px-3" name="edit" value="<?php echo $id ?>">Edit</button>
@@ -235,6 +237,7 @@ $cur_yr = date('Y');
 								<tr style="text-transform: uppercase;" class="h5 text-center">
 									<td>No.</td>
 									<td>News</td>
+									<th>Cover Photo</th>
 									<td>Date Posted</td>
 									<td>Action</td>
 								</tr>
@@ -250,6 +253,7 @@ $cur_yr = date('Y');
 										<input type="hidden" name="tbl_name" value="news">
 										<td><?php echo $i++; ?></td>
 										<td><?php echo nl2br($res['description']) ?></td>
+										<td><img src="../news_update/<?php echo $res['cover_photo'] ?>" width="300" height="250"></td>
 										<td><?php echo $res['created_at'] ?></td>
 										<td>
 											<button class="btn btn-info mb-2 px-3" name="edit" value="<?php echo $id ?>">Edit</button>
@@ -281,7 +285,7 @@ $cur_yr = date('Y');
 
 
 	<!-- Modals -->
-	<form action="process.php" method="POST" class="">
+	<form action="process.php" method="POST" class="" enctype="multipart/form-data">
 
 		<!-- Vertically centered modal -->
 		<div class="modal fade col-8" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -345,7 +349,9 @@ $cur_yr = date('Y');
 					</div>
 					<div class="modal-body">
 						<label for="announcementBody">Announcement</label>
-						<textarea name="announcement" id="announcementBody" class="form-control" rows="12"></textarea>
+						<textarea name="announcement" id="announcementBody" class="form-control" rows="12"></textarea><br>
+						<label>Cover Photo</label>
+						<input type="file" name="cover_photo_announcement[]" class="form-control" multiple>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -365,7 +371,9 @@ $cur_yr = date('Y');
 					</div>
 					<div class="modal-body">
 						<label for="announcementBodys">News & Update</label>
-						<textarea name="news_update" id="announcementBodys" class="form-control" rows="12"></textarea>
+						<textarea name="news_update" id="announcementBodys" class="form-control" rows="12"></textarea><br>
+						<label>Cover Photo</label>
+						<input type="file" name="cover_photo_news[]" class="form-control" multiple>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
