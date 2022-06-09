@@ -66,34 +66,45 @@ include 'database.php';
         }
         ?>
         <div class="row mx-auto text-light">
-           <div class="text-dark mt-3"><h2 class="mx-2"><?php echo $department ?></h2></div>
+         <div class="text-dark mt-3"><h2 class="mx-2"><?php echo $department ?></h2></div>
          <div class="border" style="overflow: scroll; height: 600px; width: 1200px">
-            <div class="row px-3">
-           <?php 
-           $qry2 = mysqli_query($connection,"SELECT * FROM extensionprograms WHERE department='$dept' ORDER BY id DESC ") or die (mysqli_error($connection));
+          <div class="row px-3">
+           <?php
+           $qry2 = mysqli_query($connection,"SELECT DISTINCT ext_title,cover_photo FROM extensionprograms WHERE department='$dept' ORDER BY id DESC ") or die (mysqli_error($connection));
            while($row2 = mysqli_fetch_array($qry2)){
             ?>
-              <div class="card text-dark mx-4 mb-2 shadow">
-                <div class="card-body">
-                 <a href="extensionprograms/<?php echo $row2['ext_filename'] ?>" target="_blank"><img src="extensionprograms/<?php echo $row2['ext_filename'] ?>" width="270" height="300"></a>
+            <div class="card text-dark mx-4 mb-2 shadow">
+              <div class="card-body">
+               <a href="extensionprograms/<?php echo $row2['cover_photo'] ?>" target="_blank"><img src="extensionprograms/<?php echo $row2['cover_photo'] ?>" width="270" height="300"></a>
+             <div class="mx-3">
+                <?php 
+                $extitle = $row2['ext_title'];
+                $qry3 = mysqli_query($connection,"SELECT * FROM extensionprograms WHERE ext_title='$extitle' ORDER BY id DESC ") or die (mysqli_error($connection));
+           while($row3 = mysqli_fetch_array($qry3)){
+                ?>
+                <a href="extensionprograms/<?php echo $row3['files'] ?>" class="text-dark"><?php echo $row3['files'] ?></a><br>
+                <?php
+                }
+                ?>
                </div>
-               <div class="card-footer">
-                 <span class="h4">
-                   <center>
-                     <?php echo $row2['ext_title'] ?>
-                   </center>
-                 </span>
-               </div>
+             </div>  
+             <div class="card-footer">
+               <span class="h4">
+                 <center>
+                   <?php echo $row2['ext_title'] ?>
+                 </center>
+               </span>
              </div>
+           </div>
            <?php
          }
          ?>
-           </div>
        </div>
      </div>
-     <?php 
-   }
-   ?>
+   </div>
+   <?php 
+ }
+ ?>
         <!-- <div class="card mx-2 shadow">
              <div class="card-body">
                <a href="extensionprograms/<?php echo $row['ext_filename'] ?>" target="_blank"><img src="extensionprograms/<?php echo $row['ext_filename'] ?>" width="250" height="300"></a>
