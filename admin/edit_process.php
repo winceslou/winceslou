@@ -38,8 +38,22 @@ if(isset($_POST['update_announcement'])){
 	$id = $_POST['id'];
 	$table_name = $_POST['tbl_name'];
 	$description = $_POST['description'];
-
-	$update_announcement = mysqli_query($connection,"UPDATE announcement SET description='$description', updated_at=now() WHERE id='$id' ");
+	$cover_phototmp = $_FILES['cover_photo_announcement']['tmp_name'];
+	$fileDest = '../announcement';
+	
+	for ($i=0; $i <count($cover_phototmp) ; $i++) { 
+		$cover_photos = $_FILES['cover_photo_announcement']['name'][$i];
+		$cover_phototemp = $_FILES['cover_photo_announcement']['tmp_name'][$i];
+		if(move_uploaded_file($cover_phototemp, "$fileDest/$cover_photos")){
+			echo "moved";
+		}else{
+			echo "not moved";
+		}
+		if(empty($cover_phototemp)){
+			$update_announcement = mysqli_query($connection,"UPDATE announcement SET description='$description', updated_at=now() WHERE id='$id' ");
+		}else{
+	$update_announcement = mysqli_query($connection,"UPDATE announcement SET description='$description',cover_photo='$cover_photos', updated_at=now() WHERE id='$id' ");
+		}
 	if($update_announcement){
 		?>
 		<script type="text/javascript">
@@ -56,6 +70,7 @@ if(isset($_POST['update_announcement'])){
 			window.location.href='edit.php';
 		</script>
 		<?php
+		}
 	}
 }
 
@@ -63,8 +78,20 @@ if(isset($_POST['update_news'])){
 	$id = $_POST['id'];
 	$table_name = $_POST['tbl_name'];
 	$description = $_POST['description'];
+	$fileDest = '../news_update';
+	$cover_phototmp = $_FILES['cover_photo_news']['tmp_name'];
 
-	$update_news = mysqli_query($connection,"UPDATE news SET description='$description', updated_at=now() WHERE id='$id' ");
+	for ($i=0; $i < count($cover_phototmp) ; $i++) { 
+		# code...
+		$cover_photos = $_FILES['cover_photo_news']['name'][$i];
+		$cover_phototemp = $_FILES['cover_photo_news']['tmp_name'][$i];
+		move_uploaded_file($cover_phototemp, "$fileDest/$cover_photos");
+
+		if(empty($cover_phototemp)){
+			$update_news = mysqli_query($connection,"UPDATE news SET description='$description',updated_at=now() WHERE id='$id' ");		
+		}else{
+	$update_news = mysqli_query($connection,"UPDATE news SET description='$description',cover_photo='$cover_photos', updated_at=now() WHERE id='$id' ");
+}
 	if($update_news){
 		?>
 		<script type="text/javascript">
@@ -81,6 +108,7 @@ if(isset($_POST['update_news'])){
 			window.location.href='edit.php';
 		</script>
 		<?php
+		}
 	}
 }
 
@@ -90,18 +118,27 @@ if(isset($_POST['update_extension'])){
 	$ext_title = $_POST['ext_title'];
 	$ext_dept = $_POST['ext_dept'];
 	$ext_date = $_POST['ext_date'];
-	$ext_filename = $_FILES['ext_filename']['tmp_name'];
+	$filetmp = $_FILES['progfile']['tmp_name'];
+	$cover_photos = $_FILES['cover_photo']['name'];
+	$cover_phototemp = $_FILES['cover_photo']['tmp_name'];
 	$fileDest = '../extensionprograms';
 
-	for($i=0; $i < count($ext_filename); $i++ ){
-		$filename = $_FILES['ext_filename']['name'][$i];
-		$fileTemp = $_FILES['ext_filename']['tmp_name'][$i];
 
-		move_uploaded_file($fileTemp,"$fileDest/$filename");
+	for($i=0; $i < count($filetmp); $i++ ){
+		$filename = $_FILES['progfile']['name'][$i];
+		$fileTemp = $_FILES['progfile']['tmp_name'][$i];
+
+		// moving the uploaded file to destination folder
+		if(move_uploaded_file($fileTemp,"$fileDest/$filename") && move_uploaded_file($cover_phototemp, "$fileDest/$cover_photos")){
+			// echo "moved";
+		}else{
+			// echo "not moved";
+		}
+
 		if(empty($fileTemp)){
 			$update_extension = mysqli_query($connection,"UPDATE extensionprograms SET ext_title='$ext_title', department='$ext_dept', ext_date='$ext_date', updated_at=now() WHERE id='$id' ") or die(mysqli_error($connection));
 		}else{
-		$update_extension = mysqli_query($connection,"UPDATE extensionprograms SET ext_title='$ext_title', ext_date='$ext_date',ext_filename='$filename', department='$ext_dept', updated_at=now() WHERE id='$id' ") or die(mysqli_error($connection));
+		$update_extension = mysqli_query($connection,"UPDATE extensionprograms SET ext_title='$ext_title', ext_date='$ext_date',cover_photo='$cover_photos',files='$filename', department='$ext_dept', updated_at=now() WHERE id='$id' ") or die(mysqli_error($connection));
 		}
 		if($update_extension){
 		?>
