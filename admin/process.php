@@ -65,12 +65,23 @@ if(isset($_POST['add_research'])){
 // adding announcement
 if(isset($_POST['add_announcement'])){
 	$description = $_POST['announcement'];
+	$cover_phototmp = $_FILES['cover_photo_announcement']['tmp_name'];
+	$fileDest = '../announcement';
+	
+	for ($i=0; $i <count($cover_phototmp) ; $i++) { 
+		$cover_photos = $_FILES['cover_photo_announcement']['name'][$i];
+		$cover_phototemp = $_FILES['cover_photo_announcement']['tmp_name'][$i];
+		if(move_uploaded_file($cover_phototemp, "$fileDest/$cover_photos")){
+			echo "moved";
+		}else{
+			echo "not moved";
+		}
 	// inserting announcement
-	$insert_announcement = mysqli_query($connection,"INSERT INTO announcement (description) VALUES('$description')") or die (mysqli_error($connection));
+		$insert_announcement = mysqli_query($connection,"INSERT INTO announcement (description,cover_photo) VALUES('$description','$cover_photos')") or die (mysqli_error($connection));
 
-	if($insert_announcement == TRUE){
-		?>
-		<script type="text/javascript">
+		if($insert_announcement == TRUE){
+			?>
+			<script type="text/javascript">
 			alert("Announcement Successfully Added!");
 			window.location.href='home.php';
 		</script>
@@ -83,17 +94,28 @@ if(isset($_POST['add_announcement'])){
 		</script>
 		<?php
 	}
+		# code...
+}
 }
 
 // adding news and updates
 if(isset($_POST['add_newsUpdates'])){
 	$description = $_POST['news_update'];
-	// inserting news and updates
-	$insert_newsUpdate = mysqli_query($connection,"INSERT INTO news (description) VALUES('$description')") or die (mysqli_error($connection));
+	$fileDest = '../news_update';
+	$cover_phototmp = $_FILES['cover_photo_news']['tmp_name'];
 
-	if($insert_newsUpdate == TRUE){
-		?>
-		<script type="text/javascript">
+	for ($i=0; $i < count($cover_phototmp) ; $i++) { 
+		# code...
+		$cover_photos = $_FILES['cover_photo_news']['name'][$i];
+		$cover_phototemp = $_FILES['cover_photo_news']['tmp_name'][$i];
+		move_uploaded_file($cover_phototemp, "$fileDest/$cover_photos");
+
+	// inserting news and updates
+		$insert_newsUpdate = mysqli_query($connection,"INSERT INTO news (description,cover_photo) VALUES('$description','$cover_photos')") or die (mysqli_error($connection));
+
+		if($insert_newsUpdate == TRUE){
+			?>
+			<script type="text/javascript">
 			alert("News & Update Successfully Added!");
 			window.location.href='home.php';
 		</script>
@@ -106,6 +128,8 @@ if(isset($_POST['add_newsUpdates'])){
 		</script>
 		<?php
 	}
+}
+
 }
 
 // adding extension programs
@@ -131,23 +155,23 @@ if(isset($_POST['add_extensionprog'])){
 		}
 
 		// inserting the extension program
-	$insert_extension = mysqli_query($connection,"INSERT INTO extensionprograms (ext_title,cover_photo,files,department,ext_date) VALUES('$title','$cover_photos','$filename','$dept','$date')") or die(mysqli_error($connection));
+		$insert_extension = mysqli_query($connection,"INSERT INTO extensionprograms (ext_title,cover_photo,files,department,ext_date) VALUES('$title','$cover_photos','$filename','$dept','$date')") or die(mysqli_error($connection));
 
 
 		if($insert_extension == TRUE){
 			?>
 			<script type="text/javascript">
-			alert("Extension Program Successfully Added!");
-			window.location.href='home.php';
-		</script>
-		<?php
-	}else{
-		?>
-		<script type="text/javascript">
-			alert("Error Adding Extension Program!");
-			window.location.href='home.php';
-		</script>
-		<?php
+				alert("Extension Program Successfully Added!");
+				window.location.href='home.php';
+			</script>
+			<?php
+		}else{
+			?>
+			<script type="text/javascript">
+				alert("Error Adding Extension Program!");
+				window.location.href='home.php';
+			</script>
+			<?php
 		}
 	}
 }
@@ -162,9 +186,9 @@ if(isset($_POST['add_users'])){
 		VALUES('$account_name','$username','$password')") or die (mysqli_error($connection));
 
 	if($insert_account == TRUE){
-			?>
-			<script type="text/javascript">
-				alert("Admin User Successfully Added!");
+		?>
+		<script type="text/javascript">
+			alert("Admin User Successfully Added!");
 			window.location.href='home.php';
 		</script>
 		<?php
@@ -175,7 +199,7 @@ if(isset($_POST['add_users'])){
 			window.location.href='home.php';
 		</script>
 		<?php
-		}
+	}
 }
 
 
@@ -188,9 +212,9 @@ if(isset($_POST['update_account'])){
 	$update_account = mysqli_query($connection,"UPDATE accounts SET account_name='$name_account',username='$username',password='$password' WHERE id='$id' ") or die (mysqli_error($connection));
 
 	if($update_account == TRUE){
-			?>
-			<script type="text/javascript">
-				alert("Admin User Account Successfully Updated!");
+		?>
+		<script type="text/javascript">
+			alert("Admin User Account Successfully Updated!");
 			window.location.href='home.php';
 		</script>
 		<?php
@@ -201,16 +225,16 @@ if(isset($_POST['update_account'])){
 			window.location.href='home.php';
 		</script>
 		<?php
-		}
+	}
 }
 
 if(isset($_POST['delete_account'])){
 	$id = $_POST['delete_account'];
 	$delete = mysqli_query($connection,"DELETE FROM accounts WHERE id='$id' ")or die (mysqli_error($connection));
 	if($delete == TRUE){
-			?>
-			<script type="text/javascript">
-				alert("Account Successfully Deleted!");
+		?>
+		<script type="text/javascript">
+			alert("Account Successfully Deleted!");
 			window.location.href='home.php';
 		</script>
 		<?php
@@ -221,6 +245,6 @@ if(isset($_POST['delete_account'])){
 			window.location.href='home.php';
 		</script>
 		<?php
-		}
+	}
 }
 ?>
