@@ -170,7 +170,7 @@ $cur_yr = date('Y');
 										<td><?php echo nl2br($res['ext_title']) ?></td>
 										<td><?php echo $res['department'] ?></td>
 										<td><?php echo $res['ext_date'] ?></td>
-										<td class="text-center"><a href="../extensionprograms/<?php echo $res['ext_filename'] ?>" target="_blank"><img src="../extensionprograms/<?php echo $res['ext_filename']?>" width="200" height="200"></a></td>
+										<td class="text-center"><a href="../extensionprograms/<?php echo $res['cover_photo'] ?>" target="_blank"><img src="../extensionprograms/<?php echo $res['cover_photo']?>" width="200" height="200"></a></td>
 										<td>
 											<button class="btn btn-info mb-2 px-3" name="edit" value="<?php echo $id ?>">Edit</button>
 											<button name="delete" class="btn btn-danger" value="<?php echo $id ?>">Delete</button>
@@ -397,8 +397,10 @@ $cur_yr = date('Y');
 						</select>
 						<label>Date of Event</label>
 						<input type="date" name="ext_date" class="form-control mb-2">
-						<label>Program photo</label>
-						<input type="file" name="progfile[]" class="form-control">
+						<label>Cover Photo</label>
+						<input type="file" name="cover_photo" class="form-control">
+						<label>Program Files</label>
+						<input type="file" name="progfile[]" class="form-control" multiple="">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
