@@ -73,16 +73,18 @@ include 'database.php';
            $qry2 = mysqli_query($connection,"SELECT DISTINCT ext_title,cover_photo FROM extensionprograms WHERE department='$dept' ORDER BY id DESC ") or die (mysqli_error($connection));
            while($row2 = mysqli_fetch_array($qry2)){
             ?>
-            <div class="card text-dark mx-4 mb-2 shadow">
+            <div class="card text-dark mx-3 mb-2 shadow" style="width: 325px;">
               <div class="card-body">
-               <a href="extensionprograms/<?php echo $row2['cover_photo'] ?>" target="_blank"><img src="extensionprograms/<?php echo $row2['cover_photo'] ?>" width="270" height="300"></a>
-             <div class="mx-3">
+              <center>
+                 <a href="extensionprograms/<?php echo $row2['cover_photo'] ?>" target="_blank"><img src="extensionprograms/<?php echo $row2['cover_photo'] ?>" width="270" height="300"></a>
+              </center>
+             <div class="mx-1">
                 <?php 
                 $extitle = $row2['ext_title'];
                 $qry3 = mysqli_query($connection,"SELECT * FROM extensionprograms WHERE ext_title='$extitle' ORDER BY id DESC ") or die (mysqli_error($connection));
            while($row3 = mysqli_fetch_array($qry3)){
                 ?>
-                <a href="extensionprograms/<?php echo $row3['files'] ?>" class="text-dark"><?php echo $row3['files'] ?></a><br>
+                <span style="font-size: 20px;">&bull;</span><a href="extensionprograms/<?php echo $row3['files'] ?>" class="text-dark"><?php echo $row3['files'] ?></a><br>
                 <?php
                 }
                 ?>
