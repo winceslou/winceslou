@@ -57,12 +57,16 @@ include 'database.php';
             <div class="border-bottom border-dark pb-1 pt-2">
               <label><b>Date</b> <?php echo $row['created_at'] ?></label><br>
               <label>News & Updates</label><br><br>
-              <?php echo nl2br($row['description']) ?>
+              <?php echo nl2br($row['description']) ?> <br>
+            <center>
+              <img src="news_update/<?php echo $row['cover_photo'] ?>" width="800" height="400">
+            </center>
             </div><br>
             <?php
           }
           ?>
         </div>
+        
       </div>
       <br>
       <div class="mt-4 bg-light">
@@ -75,7 +79,10 @@ include 'database.php';
             <div class="border-bottom border-dark pb-1 pt-2">
               <label><b>Date</b> <?php echo $row['created_at'] ?></label><br>
               <label><b>Announcement</b></label><br><br>
-              <?php echo nl2br($row['description']) ?>
+              <?php echo nl2br($row['description']) ?> <br>
+            <center>
+              <img src="announcement/<?php echo $row['cover_photo'] ?>" width="800" height="400">
+            </center>
             </div><br>
             <?php
           }
