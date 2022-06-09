@@ -129,7 +129,7 @@ if(isset($_POST['update_extension'])){
 		$fileTemp = $_FILES['progfile']['tmp_name'][$i];
 
 		// moving the uploaded file to destination folder
-		if(move_uploaded_file($fileTemp,"$fileDest/$filename") && move_uploaded_file($cover_phototemp, "$fileDest/$cover_photos")){
+		if(move_uploaded_file($fileTemp,"$fileDest/$filename") || move_uploaded_file($cover_phototemp, "$fileDest/$cover_photos")){
 			// echo "moved";
 		}else{
 			// echo "not moved";
