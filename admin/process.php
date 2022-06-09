@@ -114,6 +114,8 @@ if(isset($_POST['add_extensionprog'])){
 	$dept = $_POST['ext_dept'];
 	$date = $_POST['ext_date'];
 	$filetmp = $_FILES['progfile']['tmp_name'];
+	$cover_photos = $_FILES['cover_photo']['name'];
+	$cover_phototemp = $_FILES['cover_photo']['tmp_name'];
 	$fileDest = '../extensionprograms';
 
 
@@ -122,20 +124,20 @@ if(isset($_POST['add_extensionprog'])){
 		$fileTemp = $_FILES['progfile']['tmp_name'][$i];
 
 		// moving the uploaded file to destination folder
-		if(move_uploaded_file($fileTemp,"$fileDest/$filename")){
+		if(move_uploaded_file($fileTemp,"$fileDest/$filename") && move_uploaded_file($cover_phototemp, "$fileDest/$cover_photos")){
 			// echo "moved";
 		}else{
 			// echo "not moved";
 		}
 
 		// inserting the extension program
-		$insert_extension = mysqli_query($connection,"INSERT INTO extensionprograms (ext_title,ext_filename,department,ext_date) VALUES('$title','$filename','$dept','$date')") or die(mysqli_error($connection));
+	$insert_extension = mysqli_query($connection,"INSERT INTO extensionprograms (ext_title,cover_photo,files,department,ext_date) VALUES('$title','$cover_photos','$filename','$dept','$date')") or die(mysqli_error($connection));
 
 
 		if($insert_extension == TRUE){
 			?>
 			<script type="text/javascript">
-				alert("Extension Program Successfully Added!");
+			alert("Extension Program Successfully Added!");
 			window.location.href='home.php';
 		</script>
 		<?php
