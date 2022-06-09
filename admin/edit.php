@@ -111,7 +111,7 @@ if(isset($_POST['edit'])){
 					</ul>
 				</form>
 				<button type="button" class="btn text-light" data-bs-toggle="modal" href="#accounts" role="button">
-								User Accounts
+					User Accounts
 				</button>
 			</div>
 		</div>
@@ -194,7 +194,9 @@ if(isset($_POST['edit'])){
 								<input type="hidden" name="id" value="<?php echo $id ?>">
 								<input type="hidden" name="tbl_name" value="<?php echo $table_name ?>">
 								<label>Announcement:</label>
-								<textarea rows="17" name="description" value="<?php echo $row['description'] ?>" class="form-control"><?php echo $row['description'] ?></textarea>
+								<textarea rows="17" name="description" value="<?php echo $row['description'] ?>" class="form-control"><?php echo $row['description'] ?></textarea><br>
+								<label>Cover Photo</label>
+								<input type="file" name="cover_photo_announcement[]" class="form-control" multiple>
 							</div>
 							<div class="card-footer text-end">
 								<button name="update_announcement" class="btn btn-success px-3">Save</button>
@@ -215,7 +217,9 @@ if(isset($_POST['edit'])){
 								<input type="hidden" name="id" value="<?php echo $id ?>">
 								<input type="hidden" name="tbl_name" value="<?php echo $table_name ?>">
 								<label>News & Update:</label>
-								<textarea rows="17" name="description" value="<?php echo $row['description'] ?>" class="form-control"><?php echo $row['description'] ?></textarea>
+								<textarea rows="17" name="description" value="<?php echo $row['description'] ?>" class="form-control"><?php echo $row['description'] ?></textarea><br>
+								<label>Cover Photo</label>
+								<input type="file" name="cover_photo_news[]" class="form-control" multiple>
 							</div>
 							<div class="card-footer text-end">
 								<button name="update_news" class="btn btn-success px-3">Save</button>
@@ -244,8 +248,10 @@ if(isset($_POST['edit'])){
 										<input type="text" name="ext_dept" value="<?php echo $row['department'] ?>" class="form-control" placeholder="SOED, SBM, SOIT, SICT">
 										<label>Extension Program Date:</label>
 										<input type="date" name="ext_date" value="<?php echo $row['ext_date'] ?>" class="form-control">
-										<label>Extension Program File:</label>
-										<input type="file" name="ext_filename[]" value="<?php echo $row['ext_filename'] ?>" class="form-control">
+										<label>Cover Photo</label>
+										<input type="file" name="cover_photo" class="form-control">
+										<label>Program Files</label>
+										<input type="file" name="progfile[]" class="form-control" multiple="">
 									</div>
 									<div class="card-footer text-end">
 										<button name="update_extension" class="btn btn-success px-3">Save</button>
