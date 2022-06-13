@@ -84,7 +84,7 @@ include 'database.php';
                 $qry3 = mysqli_query($connection,"SELECT * FROM extensionprograms WHERE ext_title='$extitle' ORDER BY id DESC ") or die (mysqli_error($connection));
            while($row3 = mysqli_fetch_array($qry3)){
                 ?>
-                <span style="font-size: 20px;">&bull;</span><a href="extensionprograms/<?php echo $row3['files'] ?>" class="text-dark"><?php echo $row3['files'] ?></a><br>
+                <span style="font-size: 20px;">&bull;</span><a href="extensionprograms/<?php echo $row3['files'] ?>" target="_blank" class="text-dark"><?php echo $row3['files'] ?></a><br>
                 <?php
                 }
                 ?>
