@@ -60,8 +60,74 @@ $cat = $_POST['category'];
         <input type="hidden" name="btn" value="<?php echo $yr ?>">
         <input type="hidden" name="dept" value="<?php echo $dept ?>">
         <input type="hidden" name="category" value="<?php echo $cat ?>">
-          <button class="rounded btn-primary my-2 my-sm-0" type="submit">Refresh</button>
+        <button class="rounded btn-primary my-2 my-sm-0" type="submit">Refresh</button>
         </form>
+        <?php 
+        if($cat == 1){
+        	 switch ($dept) {
+         	case 'SBM':
+         		# code...
+         	?>
+         	<a href="Student Researches/SBM/sbm.php"><button>Return</button></a>
+         	<?php
+         		break;
+         	case 'SOED':
+         		# code...
+         	?>
+         	<a href="Student Researches/SOED/soed.php"><button>Return</button></a>
+         	<?php
+         		break;
+     		case 'SOICT':
+         		# code...
+         	?>
+         	<a href="Student Researches/SOICT/sict.php"><button>Return</button></a>
+         	<?php
+         		break;
+         	case 'SOIT':
+         		# code...
+         	?>
+         	<a href="Student Researches/SOIT/soit.php"><button>Return</button></a>
+         	<?php
+         		break;
+         	default:
+         		# code...
+         		break;
+         }
+     }else{
+     	 switch ($dept) {
+         	switch ($dept) {
+         	case 'SBM':
+         		# code...
+         	?>
+         	<a href="FacultyResearches/SBM/sbm.php"><button>Return</button></a>
+         	<?php
+         		break;
+         	case 'SOED':
+         		# code...
+         	?>
+         	<a href="FacultyResearches/SOED/soed.php"><button>Return</button></a>
+         	<?php
+         		break;
+     		case 'SOICT':
+         		# code...
+         	?>
+         	<a href="FacultyResearches/SICT/sict.php"><button>Return</button></a>
+         	<?php
+         		break;
+         	case 'SOIT':
+         		# code...
+         	?>
+         	<a href="FacultyResearches/SOIT/soit.php"><button>Return</button></a>
+         	<?php
+         		break;
+         	
+         	default:
+         		# code...
+         		break;
+         }
+     }
+        ?>
+          
 			</div><br><br>
 			<div class="row px-1">
 				<?php

@@ -87,7 +87,7 @@ include '../../database.php';
            <select class="form-control" name="searching" required="">
             <option></option>
             <?php 
-            $sel_yr = mysqli_query($connection,"SELECT  DISTINCT yr FROM research WHERE research_category=1 AND dept='SBM'") or die(mysqli_error($connection));
+            $sel_yr = mysqli_query($connection,"SELECT  DISTINCT yr FROM research WHERE research_category=1 AND dept='SBM' ORDER BY yr DESC ") or die(mysqli_error($connection));
             while($reslt = mysqli_fetch_array($sel_yr)){
               ?>
               <option value="<?php echo $reslt['yr'] ?>"><?php echo $reslt['yr'] ?></option>

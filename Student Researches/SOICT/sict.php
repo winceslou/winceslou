@@ -86,7 +86,7 @@ include '../../database.php';
            <select class="form-control" name="searching" required="">
             <option> </option>
             <?php 
-            $sel_yr = mysqli_query($connection,"SELECT  DISTINCT yr FROM research WHERE research_category= 1 AND dept='SOICT' ") or die(mysqli_error($connection));
+            $sel_yr = mysqli_query($connection,"SELECT  DISTINCT yr FROM research WHERE research_category= 1 AND dept='SOICT' ORDER BY yr DESC  ") or die(mysqli_error($connection));
             while($reslt = mysqli_fetch_array($sel_yr)){
               ?>
               <option value="<?php echo $reslt['yr'] ?>"><?php echo $reslt['yr'] ?></option>
@@ -97,7 +97,7 @@ include '../../database.php';
          <button type="submit" name="search" class="btn btn-success">OK</button>  
        </div>
    </form>
-       <div class="col-1 px-1" style="margin-left: 65%"><a href="sbm.php"><button class="btn-primary py-1 rounded px-3">Refresh</button></a></div>
+       <div class="col-1 px-1" style="margin-left: 65%"><a href="sict.php"><button class="btn-primary py-1 rounded px-3">Refresh</button></a></div>
      </div>
  </div><br><br>
  <form action="../../nextpage.php" method="POST">
