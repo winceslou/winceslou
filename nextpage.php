@@ -94,7 +94,6 @@ $cat = $_POST['category'];
          		break;
          }
      }else{
-     	 switch ($dept) {
          	switch ($dept) {
          	case 'SBM':
          		# code...
