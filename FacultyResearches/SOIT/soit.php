@@ -77,15 +77,15 @@ include '../../database.php';
           </div>
   	      <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
 <h1 class="text-center">RESEARCHES 2015-2021&nbsp;</h1>
-		  <br>
   	    <h3 class="text-center">SCHOOL OF INDUSTRIAL TECHNOLOGY (SOIT)</h3>
+		   <div class="col-1 px-1" style="margin-bottom: 2%"><a href="../../facultyResearches.php"><button class="btn-secondary py-1 rounded px-4">Return</button></a></div>
   	  <div class="">
-       <form action="soit.php" method="POST">
         <label>Filter By Year:</label>
         <div class="row px-2">
          <div class="col-2 px-1">
-           <select class="form-control" name="searching">
-            <option selected="" disabled="">-- Select Year --</option>
+       <form action="soit.php" method="POST">
+           <select class="form-control" name="searching" required="">
+            <option></option>
             <?php 
             $sel_yr = mysqli_query($connection,"SELECT  DISTINCT yr FROM research WHERE research_category= 2 AND dept='SOIT' ") or die(mysqli_error($connection));
             while($reslt = mysqli_fetch_array($sel_yr)){
@@ -97,9 +97,9 @@ include '../../database.php';
         <div class="col-1 px-1">
          <button type="submit" name="search" class="btn btn-success">OK</button>  
        </div>
-       <div class="col-1 px-1"><button class="btn-primary py-1 rounded">Refresh</button></div>
-     </div>
    </form>
+       <div class="col-1 px-1" style="margin-left: 65%"><a href="soit.php"><button class="btn-primary py-1 rounded px-3">Refresh</button></a></div>
+     </div>
  </div><br><br>
  <form action="../../nextpage.php" method="POST">
    <div class="row">
