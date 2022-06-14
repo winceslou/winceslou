@@ -68,25 +68,25 @@ $cat = $_POST['category'];
          	case 'SBM':
          		# code...
          	?>
-         	<a href="Student Researches/SBM/sbm.php"><button>Return</button></a>
+         	<a href="Student Researches/SBM/sbm.php" ><button class="btn-secondary py-1 rounded px-4">Return</button></a>
          	<?php
          		break;
          	case 'SOED':
          		# code...
          	?>
-         	<a href="Student Researches/SOED/soed.php"><button>Return</button></a>
+         	<a href="Student Researches/SOED/soed.php" ><button class="btn-secondary py-1 rounded px-4">Return</button></a>
          	<?php
          		break;
      		case 'SOICT':
          		# code...
          	?>
-         	<a href="Student Researches/SOICT/sict.php"><button>Return</button></a>
+         	<a href="Student Researches/SOICT/sict.php" ><button class="btn-secondary py-1 rounded px-4">Return</button></a>
          	<?php
          		break;
          	case 'SOIT':
          		# code...
          	?>
-         	<a href="Student Researches/SOIT/soit.php"><button>Return</button></a>
+         	<a href="Student Researches/SOIT/soit.php" ><button class="btn-secondary py-1 rounded px-4">Return</button></a>
          	<?php
          		break;
          	default:
@@ -98,25 +98,25 @@ $cat = $_POST['category'];
          	case 'SBM':
          		# code...
          	?>
-         	<a href="FacultyResearches/SBM/sbm.php"><button>Return</button></a>
+         	<a href="FacultyResearches/SBM/sbm.php" ><button class="btn-secondary py-1 rounded px-4">Return</button></a>
          	<?php
          		break;
          	case 'SOED':
          		# code...
          	?>
-         	<a href="FacultyResearches/SOED/soed.php"><button>Return</button></a>
+         	<a href="FacultyResearches/SOED/soed.php" ><button class="btn-secondary py-1 rounded px-4">Return</button></a>
          	<?php
          		break;
      		case 'SOICT':
          		# code...
          	?>
-         	<a href="FacultyResearches/SICT/sict.php"><button>Return</button></a>
+         	<a href="FacultyResearches/SICT/sict.php" ><button class="btn-secondary py-1 rounded px-4">Return</button></a>
          	<?php
          		break;
          	case 'SOIT':
          		# code...
          	?>
-         	<a href="FacultyResearches/SOIT/soit.php"><button>Return</button></a>
+         	<a href="FacultyResearches/SOIT/soit.php" ><button class="btn-secondary py-1 rounded px-4">Return</button></a>
          	<?php
          		break;
          	
